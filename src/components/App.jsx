@@ -3,16 +3,21 @@ import "./style.css"
 // EVENT HANDLING, we are going to use click events and useState to change 
 // the state of a "Hello" text and also the background to the submit button
 function App() {
-    const [defaultText, text] = useState("Hello")
+    const [defaultText, finalText] = useState("Hello")
     function changeText(){
-        text("submitted");
-        console.log(text("submitted"))
+        finalText("submitted");
     }
+    const [defaultColor, finalColor] = useState(true)
+    
   return (
     <div className="container">
       <h1>{defaultText}</h1>
       <input type="text" placeholder="What's your name?" />
-      <button onClick={changeText}>Submit</button>
+      <button style={{backgroundColor: defaultColor? "white": "black"}}
+      onClick={changeText} 
+      onMouseOver={()=>(finalColor(false))}
+      onMouseOut={()=>(finalColor(true))}
+      >Submit</button>
     </div>
   );
 }
